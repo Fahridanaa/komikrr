@@ -20,27 +20,27 @@
         </Badge>
       </div>
       <Card.CardTitle
-        class="line-clamp-2 px-4 py-2 text-base transition-colors group-hover:text-primary"
+        class="line-clamp-2 px-2 md:px-4 py-2 text-base transition-colors group-hover:text-primary"
       >
         {comic.title}
       </Card.CardTitle>
     </a>
   </Card.CardHeader>
-  <Card.CardContent class="p-4 pt-0">
-    <a href="/" class="block">
+  <Card.CardContent class="p-0 pb-2 px-2 md:px-4 pt-0 flex flex-col gap-2 sm:gap-0">
+    <a href="/">
         <div
-          class="flex justify-between rounded px-2 py-1 text-sm transition-colors hover:bg-muted"
+          class="flex justify-center bg-gray-200 py-2 sm:justify-between sm:bg-white rounded text-sm transition-colors hover:bg-muted"
         >
           <span>Chapter 2</span>
-          <span class="text-muted-foreground">2 days ago</span>
+          <span class="hidden sm:block text-muted-foreground">2 days ago</span>
         </div>
       </a>
-    <a href="/" class="block">
+    <a href="/">
         <div
-          class="flex justify-between rounded px-2 py-1 text-sm transition-colors hover:bg-muted"
+          class="flex justify-center bg-gray-200 py-2 sm:justify-between sm:bg-white rounded text-sm transition-colors hover:bg-muted"
         >
           <span>Chapter 1</span>
-          <span class="text-muted-foreground">7 days ago</span>
+          <span class="hidden sm:block text-muted-foreground">7 days ago</span>
         </div>
       </a>
   </Card.CardContent>
