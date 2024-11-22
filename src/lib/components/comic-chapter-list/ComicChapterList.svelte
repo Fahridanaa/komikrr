@@ -1,10 +1,7 @@
 <script lang="ts">
   import { formatRelativeTime } from "$lib/utils/helpers";
   import { ScrollArea } from "$lib/components/ui/scroll-area";
-  import { Button } from "$lib/components/ui/button";
   import { Clock, BookOpen } from "lucide-svelte";
-
-//   export let slug: string;
 
   const totalChapters = 10;
 
@@ -12,10 +9,6 @@
     number: totalChapters - i,
     date: new Date(Date.now() - i * 24 * 60 * 60 * 1000),
   }));
-
-  function padChapterNumber(num: number): string {
-    return num.toString().padStart(2, "0");
-  }
 </script>
 
 <div class="space-y-4">
@@ -30,7 +23,7 @@
     <div class="space-y-4">
       {#each chapters as chapter (chapter.number)}
         <a
-          href="/"
+          href="/comics/naruto/chapter-{chapter.number}"
           class="block"
         >
           <div class="group flex items-center justify-between rounded-lg border p-3 hover:bg-muted transition-colors">
