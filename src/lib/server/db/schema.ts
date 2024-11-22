@@ -1,4 +1,4 @@
-import { pgTable, serial, text, integer, timestamp, jsonb } from 'drizzle-orm/pg-core';
+import { pgTable, serial, text, integer, timestamp, jsonb, varchar } from 'drizzle-orm/pg-core';
 
 export const user = pgTable('user', {
 	id: text('id').primaryKey(),
@@ -26,6 +26,15 @@ export const comic = pgTable('comic', {
   coverImageUrl: text('cover_image_url').notNull(),
   rating: integer('rating'),
   slug: text('slug').notNull().unique(),
+});
+
+export const genres = pgTable('genres', {
+  id: serial('id').primaryKey(),
+  name: varchar('name', { length: 255 }).notNull(),
+  slug: varchar('slug', { length: 255 }).notNull().unique(),
+  icon: varchar('icon', { length: 255 }).notNull(),
+  description: text('description').notNull(),
+  image: varchar('image', { length: 255 }).notNull(),
 });
 
 export type Comic = typeof comic.$inferSelect;
