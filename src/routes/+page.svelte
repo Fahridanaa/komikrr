@@ -7,13 +7,13 @@
 
   export let data: PageData;
 </script>
-<main class="max-w-[1224px] mx-auto md:p-8 p-4 flex flex-1 flex-col gap-4 md:gap-8">
+<article class="max-w-[1224px] mx-auto md:p-8 p-4 flex flex-1 flex-col gap-4 md:gap-8">
   <section class="hidden w-full md:block">
     <ComicCarousel comics={data.featuredComics} />
   </section>
 
   <section>
-    <article class="space-y-4">
+    <div class="space-y-4">
       <h2 class="text-2xl font-semibold">Popular Comics</h2>
       <ScrollArea.Root class="py-2">
         <div class="grid w-max auto-cols-[200px] grid-flow-col grid-rows-1 gap-4">
@@ -23,18 +23,18 @@
         </div>
         <ScrollArea.ScrollAreaScrollbar orientation="horizontal" />
       </ScrollArea.Root>
-    </article>
+    </div>
   </section>
 
   <section class="relative flex justify-center gap-4">
-    <article class="relative flex-[2] space-y-4 overflow-x-hidden">
+    <section class="relative flex-[2] space-y-4 overflow-x-hidden">
       <h2 class="text-2xl font-semibold">Latest Updates</h2>
       <div class="grid auto-rows-auto grid-cols-[repeat(auto-fit,_minmax(180px,_1fr))] gap-4">
         {#each data.latestUpdates as comic}
           <ComicCard {comic} />
         {/each}
       </div>
-    </article>
+    </section>
     <aside class="hidden max-w-72 flex-1 space-y-2 md:block">
       <h2 class="text-xl font-medium">Popular Comics</h2>
       <PopularComic
@@ -44,4 +44,4 @@
       />
     </aside>
   </section>
-</main>
+</article>
