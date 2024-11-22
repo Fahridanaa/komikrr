@@ -8,7 +8,7 @@
 
 <Card.Root class="group overflow-hidden">
   <Card.CardHeader class="relative p-0">
-    <a href={`/comic/${comic.id}`}>
+    <a href={`/comics/${comic.slug}`}>
       <div class="relative aspect-[3/4] overflow-hidden rounded-t-lg">
         <img
           src="/assets/cover.jpg"
