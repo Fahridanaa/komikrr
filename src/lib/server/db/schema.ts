@@ -25,6 +25,7 @@ export const comic = pgTable('comic', {
   synopsis: text('synopsis').notNull(),
   coverImageUrl: text('cover_image_url').notNull(),
   rating: integer('rating'),
+  slug: text('slug').notNull().unique(),
 });
 
 export type Comic = typeof comic.$inferSelect;

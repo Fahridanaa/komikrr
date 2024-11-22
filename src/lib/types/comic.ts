@@ -3,6 +3,7 @@ export type ComicStatus = 'ongoing' | 'completed';
 
 export interface Comic {
   id: number;
+  slug: string;
   title: string;
   author: string;
   type: ComicType;
