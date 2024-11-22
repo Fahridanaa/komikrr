@@ -24,9 +24,6 @@
       <BookOpen class="w-5 h-5" />
       Chapter List
     </h2>
-    <Button variant="outline" size="sm">
-      Sort
-    </Button>
   </div>
 
   <ScrollArea class="h-[600px] rounded-md border p-4">
