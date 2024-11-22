@@ -1,20 +1,17 @@
-<!-- src/lib/components/comic-card/ComicCard.svelte -->
 <script lang="ts">
   import * as Card from "$lib/components/ui/card";
   import { Badge } from "$lib/components/ui/badge";
-  import type { Props } from './index';
+  import type { Comic } from '$lib/types/comic';
 
-  type $$Props = Props;
-
-  export let comic: $$Props['comic'];
+  export let comic: Comic;
 </script>
 
 <Card.Root class="group overflow-hidden">
   <Card.CardHeader class="relative p-0">
-    <a href={comic.href}>
+    <a href={`/comic/${comic.id}`}>
       <div class="relative aspect-[3/4] overflow-hidden rounded-t-lg">
         <img
-          src={comic.coverImage}
+          src="/assets/cover.jpg"
           alt={comic.title}
           class="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-110"
         />
@@ -30,15 +27,21 @@
     </a>
   </Card.CardHeader>
   <Card.CardContent class="p-4 pt-0">
-    {#each comic.chapters as chapter}
-      <a href={chapter.href} class="block">
+    <a href="/" class="block">
         <div
           class="flex justify-between rounded px-2 py-1 text-sm transition-colors hover:bg-muted"
         >
-          <span>Chapter {chapter.number}</span>
-          <span class="text-muted-foreground">{chapter.timeAgo}</span>
+          <span>Chapter 2</span>
+          <span class="text-muted-foreground">2 days ago</span>
         </div>
       </a>
-    {/each}
+    <a href="/" class="block">
+        <div
+          class="flex justify-between rounded px-2 py-1 text-sm transition-colors hover:bg-muted"
+        >
+          <span>Chapter 1</span>
+          <span class="text-muted-foreground">7 days ago</span>
+        </div>
+      </a>
   </Card.CardContent>
 </Card.Root>

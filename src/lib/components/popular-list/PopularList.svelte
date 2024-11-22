@@ -1,11 +1,7 @@
-<!-- src/lib/components/popular-list/PopularList.svelte -->
 <script lang="ts">
-	import { type Props } from "./index";
+  import type { Comic } from '$lib/types/comic';
 
-
-  type $$Props = Props;
-
-  export let comics: $$Props["comics"];
+  export let comics: Comic[];
 </script>
 
 <div class="divide-y">

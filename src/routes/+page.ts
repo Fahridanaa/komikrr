@@ -1,10 +1,16 @@
-import { error } from '@sveltejs/kit';
+// src/routes/+page.ts
 import type { PageLoad } from './$types';
+import type { Comic } from '$lib/types/comic';
 
-export const load: PageLoad = () => {
-	return {
-			title: 'Hello world!',
-			content: 'Welcome to our blog. Lorem ipsum dolor sit amet...'
-		};
-	error(404, 'Not found');
+export interface PageData {
+  featuredComics: Comic[];
+  popularComics: Comic[];
+  latestUpdates: Comic[];
+  weeklyComics: Comic[];
+  monthlyComics: Comic[];
+  allTimeComics: Comic[];
+}
+
+export const load: PageLoad = async ({ data }) => {
+  return data as unknown as PageData;
 };
