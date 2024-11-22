@@ -8,8 +8,8 @@ interface NavItem {
 export const load: LayoutLoad = () => {
     const navItems: NavItem[] = [
         { name: "Home", href: "/" },
-        { name: "List", href: "/" },
-        { name: "Genre", href: "/" },
+        { name: "List", href: "/list" },
+        { name: "Genres", href: "/genres" },
     ];
 
     return {
