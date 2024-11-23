@@ -17,7 +17,7 @@
 	<section class="container mx-auto px-4 py-8">
 		<Card.Root class="overflow-hidden bg-card">
 			<div class="grid gap-6 p-6 md:grid-cols-[300px_1fr]">
-				<CoverSection title={data.comic.title} status={data.comic.status} type={data.comic.type} />
+				<CoverSection title={data.comic.title} status={data.comic.status} type={data.comic.type} coverImage={data.comic.coverImageUrl} />
 
 				<div class="space-y-6">
 					<div class="space-y-2">
@@ -38,7 +38,7 @@
 
 					<Separator.Root class="my-4" />
 
-					<ChapterList />
+					<ChapterList slug={data.comic.slug} chapters={data.comicChapters} />
 					<slot />
 				</div>
 			</div>

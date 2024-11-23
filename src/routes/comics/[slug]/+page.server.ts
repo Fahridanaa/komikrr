@@ -4,11 +4,13 @@ import type { PageServerLoad } from './$types';
 import { db } from '$lib/server/db';
 import { comic } from '$lib/server/db/schema';
 import { eq } from 'drizzle-orm';
+import { getComicChapters } from '$lib/utils/cloudinary';
 
 export const load: PageServerLoad = async ({ params }) => {
   try {
-    // Fetch the comic from the database using the slug
-    const result = await db.select().from(comic).where(eq(comic.slug, params.slug)).limit(1);
+    const { slug } = params;
+
+    const result = await db.select().from(comic).where(eq(comic.slug, slug)).limit(1);
 
     if (result.length === 0) {
       throw error(404, 'Comic not found');
@@ -16,14 +18,16 @@ export const load: PageServerLoad = async ({ params }) => {
 
     const comicData = result[0];
 
-    // Transform the data if needed (e.g., parsing dates, JSON fields)
+    const comicChapters = await getComicChapters(slug);
+
     return {
       comic: {
         ...comicData,
         genres: Array.isArray(comicData.genres) ? comicData.genres : JSON.parse(comicData.genres as string),
         release: new Date(comicData.release),
         updatedOn: new Date(comicData.updatedOn)
-      }
+      },
+      comicChapters
     };
   } catch (err) {
     console.error('Error fetching comic:', err);

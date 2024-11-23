@@ -2,8 +2,9 @@
   import * as Card from "$lib/components/ui/card";
   import { Badge } from "$lib/components/ui/badge";
   import type { Comic } from '$lib/types/comic';
+	import { slugify } from "$lib/utils/helpers";
 
-  export let comic: Comic;
+  export let comic;
 </script>
 
 <Card.Root class="group overflow-hidden">
@@ -11,7 +12,7 @@
     <a href={`/comics/${comic.slug}`}>
       <div class="relative aspect-[3/4] overflow-hidden rounded-t-lg">
         <img
-          src="/assets/cover.jpg"
+          src={comic.coverImageUrl}
           alt={comic.title}
           class="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-110"
         />
@@ -26,22 +27,15 @@
       </Card.CardTitle>
     </a>
   </Card.CardHeader>
-  <Card.CardContent class="p-0 pb-2 px-2 md:px-4 pt-0 flex flex-col gap-2 sm:gap-0">
-    <a href="/">
+  <Card.CardContent class="p-0 pb-2 px-2 md:px-4 flex flex-col-reverse pt-0 sm:gap-0">
+    {#each comic.twoLatestChapter as chapter}
+      <a href="/comics/{comic.slug}/{slugify(chapter)}">
         <div
-          class="flex justify-center bg-gray-200 py-2 sm:justify-between sm:bg-white rounded text-sm transition-colors hover:bg-muted"
+          class="flex justify-center bg-gray-200 py-2 text-sm transition-colors hover:bg-gray-300 rounded-lg mb-2"
         >
-          <span>Chapter 2</span>
-          <span class="hidden sm:block text-muted-foreground">2 days ago</span>
+          <span>{chapter}</span>
         </div>
       </a>
-    <a href="/">
-        <div
-          class="flex justify-center bg-gray-200 py-2 sm:justify-between sm:bg-white rounded text-sm transition-colors hover:bg-muted"
-        >
-          <span>Chapter 1</span>
-          <span class="hidden sm:block text-muted-foreground">7 days ago</span>
-        </div>
-      </a>
+    {/each}
   </Card.CardContent>
 </Card.Root>

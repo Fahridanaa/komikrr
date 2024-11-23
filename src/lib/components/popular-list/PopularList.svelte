@@ -18,7 +18,7 @@
         class="flex gap-4 group"
       >
         <img
-          src="/assets/cover.jpg"
+          src={comic.coverImageUrl}
           alt={comic.title}
           class="w-20 h-28 object-cover rounded"
         />
