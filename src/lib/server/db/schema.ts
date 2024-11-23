@@ -13,18 +13,18 @@ export const session = pgTable('session', {
 	expiresAt: timestamp('expires_at', { withTimezone: true, mode: 'date' }).notNull()
 });
 
-export const comic = pgTable('comic', {
+export const comics = pgTable('comics', {
   id: serial('id').primaryKey(),
   title: text('title').notNull(),
-  author: text('author').notNull(),
+  author: text('author'),
   type: text('type', { enum: ['manga', 'manhwa', 'manhua'] }).notNull(),
   status: text('status', { enum: ['ongoing', 'completed'] }).notNull(),
-  release: timestamp('release', { withTimezone: true }).notNull(),
-  updatedOn: timestamp('updated_on', { withTimezone: true }).notNull(),
+  release: text('release').notNull(),
+  updatedOn: timestamp('updated_on', { withTimezone: true, mode: 'date' }).notNull(),
   genres: jsonb('genres').notNull(),
   synopsis: text('synopsis').notNull(),
   coverImageUrl: text('cover_image_url').notNull(),
-  rating: integer('rating'),
+  rating: text('rating'),
   slug: text('slug').notNull().unique(),
 });
 
@@ -37,8 +37,8 @@ export const genres = pgTable('genres', {
   image: varchar('image', { length: 255 }).notNull(),
 });
 
-export type Comic = typeof comic.$inferSelect;
-export type NewComic = typeof comic.$inferInsert;
+export type Comic = typeof comics.$inferSelect;
+export type NewComic = typeof comics.$inferInsert;
 
 export type Session = typeof session.$inferSelect;
 

@@ -2,7 +2,7 @@
   import { Calendar, Clock, User2 } from "lucide-svelte";
   import { format } from "date-fns";
 
-  export let author: string;
+  export let author: string | null;
   export let release: Date;
   export let updatedOn: Date;
 </script>

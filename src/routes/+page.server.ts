@@ -2,23 +2,21 @@ import { getComicChapters } from '$lib/utils/cloudinary';
 // src/routes/+page.server.ts
 import type { PageServerLoad } from './$types';
 import { db } from '$lib/server/db';
-import { comic } from '$lib/server/db/schema';
+import { comics } from '$lib/server/db/schema';
 import type { Comic } from '$lib/types/comic';
 
 export const load: PageServerLoad = async () => {
   try {
-    const comics = await db.select().from(comic).limit(10) as Comic[];
+    const comicsData = await db.select().from(comics).limit(10) as Comic[];
 
-    const parsedComics = await Promise.all(comics.map(async c => ({
+    const parsedComics = await Promise.all(comicsData.map(async c => ({
       ...c,
-      release: c.release instanceof Date ? c.release : new Date(c.release),
-      updatedOn: c.updatedOn instanceof Date ? c.updatedOn : new Date(c.updatedOn),
       genres: Array.isArray(c.genres) ? c.genres : JSON.parse(c.genres as string),
       twoLatestChapter: (await getComicChapters(c.slug)).slice(-2)
     })));
 
     const featuredComics = parsedComics.slice(0, 3);
-    const popularComics = parsedComics.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0)).slice(0, 10);
+    const popularComics = parsedComics.sort((a, b) => (Number(b.rating) || 0) - (Number(a.rating) || 0)).slice(0, 10);
     const latestUpdates = parsedComics.sort((a, b) => b.updatedOn.getTime() - a.updatedOn.getTime()).slice(0, 10);
 
     return {

@@ -2,7 +2,7 @@
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { db } from '$lib/server/db';
-import { comic } from '$lib/server/db/schema';
+import { comics } from '$lib/server/db/schema';
 import { eq } from 'drizzle-orm';
 import { getComicChapters } from '$lib/utils/cloudinary';
 
@@ -10,7 +10,7 @@ export const load: PageServerLoad = async ({ params }) => {
   try {
     const { slug } = params;
 
-    const result = await db.select().from(comic).where(eq(comic.slug, slug)).limit(1);
+    const result = await db.select().from(comics).where(eq(comics.slug, slug)).limit(1);
 
     if (result.length === 0) {
       throw error(404, 'Comic not found');

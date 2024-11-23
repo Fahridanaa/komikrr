@@ -29,7 +29,7 @@
   <section class="relative flex justify-center gap-4">
     <section class="relative flex-[2] space-y-4 overflow-x-hidden">
       <h2 class="text-2xl font-semibold">Latest Updates</h2>
-      <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 auto-rows-fr">
+      <div class="grid gap-4 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 auto-rows-fr">
         {#each data.latestUpdates as comic}
           <ComicCard {comic} />
         {/each}

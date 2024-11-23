@@ -34,12 +34,12 @@
     return () => window.removeEventListener('resize', handleResize);
   });
 
-  $: totalPages = Math.ceil(data.comics.length / itemsPerPage);
-  $: paginatedComics = data.comics.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  $: totalPages = Math.ceil(data.comicsData.length / itemsPerPage);
+  $: paginatedComics = data.comicsData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   // Ensure current page is valid when itemsPerPage changes
   $: {
-    const maxPages = Math.ceil(data.comics.length / itemsPerPage);
+    const maxPages = Math.ceil(data.comicsData.length / itemsPerPage);
     if (currentPage > maxPages) {
       currentPage = maxPages;
     }

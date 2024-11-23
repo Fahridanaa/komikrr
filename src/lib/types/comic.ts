@@ -8,10 +8,10 @@ export interface Comic {
   author: string;
   type: ComicType;
   status: ComicStatus;
-  release: Date;
+  release: string;
   updatedOn: Date;
   genres: string[];
   synopsis: string;
   coverImageUrl: string;
-  rating: number | null;
+  rating: string | null;
 }
